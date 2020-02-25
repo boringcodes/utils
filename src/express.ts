@@ -1,8 +1,11 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { NOT_FOUND, BAD_REQUEST } from 'http-status-codes';
+import { Request, Response, NextFunction, RequestHandler, Router } from 'express';
+import {
+  BAD_REQUEST, NOT_FOUND, OK, INTERNAL_SERVER_ERROR,
+  getStatusText,
+} from 'http-status-codes';
 
 import { HttpError } from './error';
-import errorHandler from './error-handler';
+import errorHandler from './errorHandler';
 
 // ---------------------------------------------------
 // ----------------------Helpers----------------------
@@ -18,7 +21,7 @@ interface Query {
 }
 interface OriginalListQuery {
   readonly sort?: string;
-  readonly direction?: string;
+  readonly order?: string;
   readonly skip?: number;
   readonly limit?: number;
   readonly select?: string;
@@ -114,8 +117,8 @@ const parsePopulate = (populate: string) => {
   return populate.split(',').filter(item => !!item);
 };
 
-const parseSort = (sort: string, direction: string) => {
-  return direction === 'desc' ? `-${sort.trim()}` : sort.trim();
+const parseSort = (sort: string, order: string) => {
+  return order === 'desc' ? `-${sort.trim()}` : sort.trim();
 };
 
 const parseQuery = ({
@@ -126,15 +129,17 @@ const parseQuery = ({
   populate: parsePopulate(populate),
 });
 
-const parseListQuery = ({
-  search = '', q = '',
-  filter = '',
-  select = '',
-  populate = '',
-  sort = 'createdAt', direction = 'asc',
-  skip = 0, limit = 25,
-  ...filterValues
-}: OriginalListQuery): ListQuery => {
+const parseListQuery = (listQuery: OriginalListQuery): ListQuery => {
+  const {
+    search = '', q = '',
+    filter = '', ...filterValues
+  } = listQuery;
+  const {
+    select = '',
+    populate = '',
+    sort = 'createdAt', order = 'asc',
+    skip = 0, limit = 25,
+  } = listQuery;
   const { $or: searchOr, ...searchQuery } = parseSearchQuery(search, q);
   const { $or: filterOr, ...filterQuery } = parseFilterQuery(filter, filterValues);
 
@@ -154,7 +159,7 @@ const parseListQuery = ({
     },
     select: parseSelect(select),
     populate: parsePopulate(populate),
-    sort: parseSort(sort, direction),
+    sort: parseSort(sort, order),
     skip: +skip,
     limit: +limit,
   };
@@ -170,7 +175,7 @@ const parseListQuery = ({
  * @param _ Express Response object
  * @param next Express Next function
  */
-const parseQueryMiddleware = (req: Request, _: Response, next: NextFunction) => {
+const validateQuery = (req: Request, _: Response, next: NextFunction) => {
   try {
     const myQuery = parseQuery(req.query);
     Object.assign(req, { myQuery });  // tslint:disable-line: no-object-mutation
@@ -187,7 +192,7 @@ const parseQueryMiddleware = (req: Request, _: Response, next: NextFunction) => 
  * @param _ Express Response object
  * @param next Express Next function
  */
-const parseListQueryMiddleware = (req: Request, _: Response, next: NextFunction) => {
+const validateListQuery = (req: Request, _: Response, next: NextFunction) => {
   try {
     const myQuery = parseListQuery(req.query);
     Object.assign(req, { myQuery });  // tslint:disable-line: no-object-mutation
@@ -236,7 +241,34 @@ const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
 const handleErrors = (err: HttpError, _: Request, res: Response, __: NextFunction) => {
   errorHandler.handle(err);
 
-  res.status(err.code).send(err);
+  try {
+    // check if status code exists
+    getStatusText(err.code);
+
+    res.status(err.code).send(err);
+  } catch (error) {
+    res.status(INTERNAL_SERVER_ERROR).send(err);
+  }
+};
+
+/**
+ * An Express RequestHandler that responses OK for health checking
+ * @param _ Express Request object
+ * @param res Express Response object
+ */
+const handleHealthCheck = (_: Request, res: Response) => {
+  res.status(OK).send('OK');
+};
+
+/**
+ * An Express Middleware mounted /health endpoint for health checking
+ */
+const health = () => {
+  const router = Router();
+
+  router.get('/health', handleHealthCheck);
+
+  return router;
 };
 
 export {
@@ -251,10 +283,13 @@ export {
   parseQuery,
   parseListQuery,
 
-  parseQueryMiddleware,
-  parseListQueryMiddleware,
+  validateQuery,
+  validateListQuery,
   validateBody,
 
   handleNotFound,
   handleErrors,
+  handleHealthCheck,
+
+  health,
 };

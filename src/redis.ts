@@ -1,7 +1,7 @@
 import * as redis from 'redis';
 
 import logger from './logger';
-import errorHandler from './error-handler';
+import errorHandler from './errorHandler';
 
 const host = process.env.REDIS_HOST || 'localhost';
 const port = +(process.env.REDIS_PORT || 0) || 6379;
@@ -16,20 +16,20 @@ const client = redis.createClient({
 });
 
 client.on('connect', () => {
-  logger.info('> Redis connection is connect.');
+  logger.info('> Redis connected');
 });
 
 client.on('reconnecting', (err: any) => {
-  logger.error('> Redis connection is reconnecting', err);
+  logger.error('> Redis is reconnecting', err);
 });
 
 client.on('error', (err: any) => {
-  logger.error('> Redis connection error', err);
+  logger.error('> Redis failed to connect', err);
   errorHandler.handle(err);
 });
 
 client.on('end', (err: any) => {
-  logger.error('> Redis connection end', err);
+  logger.error('> Redis connection ended', err);
   errorHandler.handle(err);
 });
 

@@ -19,3 +19,4 @@ const isProduction = (): boolean => {
 };
 
 export { isDev, isTest, isStaging, isProduction };
+export default { isDev, isTest, isStaging, isProduction };

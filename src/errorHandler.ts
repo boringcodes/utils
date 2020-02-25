@@ -18,4 +18,5 @@ const handle = (err: MyError) => {
   }
 };
 
+export { handle };
 export default { handle };

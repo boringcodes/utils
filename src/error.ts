@@ -3,12 +3,20 @@ import { isDev } from '.';
 class MyError extends Error {
   readonly operational?: boolean;
 
-  constructor(err: Error | string, operational = false) {
+  constructor(err: any, operational = false) {
     super();
 
-    this.name = err instanceof Error ? err.name : 'Error';
-    this.message = err instanceof Error ? err.message : err;
+    this.name = err instanceof Error || typeof err === 'object' ? err.name : 'Error';
+    this.message = err instanceof Error || typeof err === 'object' ? err.message : err;
     this.operational = operational;
+
+    // restore prototype chain
+    Object.setPrototypeOf(this, new.target.prototype);
+
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, MyError);
+    }
   }
 }
 
@@ -18,7 +26,7 @@ class MyError extends Error {
 class HttpError extends MyError {
   readonly code: number;
 
-  constructor(code: number, err: Error | string) {
+  constructor(code: number, err: any) {
     super(err, true);
 
     this.code = code;

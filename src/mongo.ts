@@ -1,11 +1,12 @@
 import { Mongoose, ConnectionOptions } from 'mongoose';
 
-import errorHandler from './error-handler';
+import errorHandler from './errorHandler';
 import logger from './logger';
-import { timestampsPlugin } from './mongoose';
+import { timestampsPlugin, crossServicesPopulatePlugin } from './mongoose';
 
 interface MongooseOptions extends ConnectionOptions {
   readonly timestampsPlugin?: boolean;
+  readonly crossServicesPopulatePlugin?: boolean;
 }
 interface MongooseConnect {
   readonly mongoose: Mongoose;
@@ -23,20 +24,28 @@ const uri = user && password
   : `mongodb://${host}:${port}/${dbName}`;
 
 const connect = ({ mongoose, options = {}, cb = () => {} }: MongooseConnect) => {
-  const { timestampsPlugin: timestampsPluginFlag, ...connectionOptions } = options;
+  const {
+    timestampsPlugin: timestampsPluginFlag,
+    crossServicesPopulatePlugin: crossServicesPopulatePluginFlag,
+    ...connectionOptions
+  } = options;
 
   if (timestampsPluginFlag) {
     mongoose.plugin(timestampsPlugin);
   }
 
+  if (crossServicesPopulatePluginFlag) {
+    mongoose.plugin(crossServicesPopulatePlugin);
+  }
+
   mongoose.connection.on('connected', () => {
-    logger.info('> MongoDB connected');
+    logger.info('> Mongo connected');
   });
 
   mongoose.connection.on('error', (err: Error) => {
     mongoose.disconnect();
 
-    logger.info('> MongoDB failed to start');
+    logger.info('> Mongo failed to connect');
     errorHandler.handle(err);
   });
 
@@ -47,4 +56,5 @@ const connect = ({ mongoose, options = {}, cb = () => {} }: MongooseConnect) => 
   }).then(cb);
 };
 
+export { connect };
 export default { connect };
