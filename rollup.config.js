@@ -24,7 +24,7 @@ export default [
   // utils
   {
     ...common,
-    input: 'src/db.ts',
+    input: 'src/mongo.ts',
     output: [
       {
         dir: 'dist',
@@ -57,7 +57,7 @@ export default [
   },
   {
     ...common,
-    input: 'src/error-handler.ts',
+    input: 'src/errorHandler.ts',
     output: [
       {
         dir: 'dist',
