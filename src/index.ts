@@ -2,8 +2,9 @@
  * Check if the current environment is development
  * @returns boolean
  */
+
 const isDev = (): boolean => {
-  return ['test', 'staging', 'production'].indexOf(process.env.NODE_ENV as string) === -1;
+  return !['test', 'staging', 'production'].includes(process.env.NODE_ENV as string);
 };
 
 const isTest = (): boolean => {

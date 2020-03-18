@@ -21,29 +21,6 @@ const common = {
 };
 
 export default [
-  // utils
-  {
-    ...common,
-    input: 'src/mongo.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/redis.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
   {
     ...common,
     input: 'src/error.ts',
@@ -79,29 +56,18 @@ export default [
   },
   {
     ...common,
-    input: 'src/logger.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/mongoose.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
     input: 'src/index.ts',
+    output: [
+      {
+        dir: 'dist',
+        format: 'cjs',
+        sourcemap: true,
+      },
+    ],
+  },
+  {
+    ...common,
+    input: 'src/logger.ts',
     output: [
       {
         dir: 'dist',

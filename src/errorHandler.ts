@@ -6,7 +6,6 @@ import logger from './logger';
  * @param err error to be handled
  */
 const handle = (err: MyError) => {
-  // TODO
   // E.g. log to sentry
   // E.g. log to console
   logger.error(err);
