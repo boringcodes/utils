@@ -1,13 +1,13 @@
 <div align="center">
   <h1>utils</h1>
   <p>Boring Utilities</p>
-  
+
   <div>
     <a href="https://github.com/boringcodes/utils" aria-label="Commitizen Friendly">
       <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
     </a>
     <a href="https://github.com/boringcodes/utils" aria-label="GitHub Workflow Status">
-      <img src="https://img.shields.io/github/workflow/status/boringcodes/utils/Publish Package to NPM?style=flat-square">
+      <img src="https://img.shields.io/github/workflow/status/boringcodes/utils/publish-npm?style=flat-square">
     </a>
     <a href="https://github.com/boringcodes/utils" aria-label="Dependencies Status">
       <img src="https://img.shields.io/david/boringcodes/utils?style=flat-square">
@@ -51,11 +51,9 @@ $ yarn add @boringcodes/utils
 The following modules are included:
 * Node env detector
 * Custom logger
-* Custom errorsavailable in Node
+* Custom errors classes
 * Error handler
 * Express middleware
-* Mongoose connector & mongoose plugins
-* Redis connector
 
 ## Usage
 
@@ -72,42 +70,28 @@ yarn build
 ├── LICENSE
 ├── README.md
 ├── dist
-│   ├── db.d.ts
-│   ├── db.js
-│   ├── db.js.map
-│   ├── error-handler.d.ts
-│   ├── error-handler.js
-│   ├── error-handler.js.map
-│   ├── error.d.ts
-│   ├── error.js
-│   ├── error.js.map
-│   ├── express.d.ts
-│   ├── express.js
-│   ├── express.js.map
-│   ├── index.d.ts
-│   ├── index.js
-│   ├── index.js.map
-│   ├── logger.d.ts
-│   ├── logger.js
-│   ├── logger.js.map
-│   ├── mongoose.d.ts
-│   ├── mongoose.js
-│   ├── mongoose.js.map
-│   ├── redis.d.ts
-│   ├── redis.js
-│   └── redis.js.map
 ├── package.json
 ├── rollup.config.js
 ├── src
-│   ├── db.ts
-│   ├── error-handler.ts
+│   ├── errorHandler.ts
 │   ├── error.ts
 │   ├── express.ts
 │   ├── index.ts
 │   ├── logger.ts
-│   ├── mongoose.ts
-│   └── redis.ts
 ├── tsconfig.json
 ├── tslint.json
 ```
 
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## Authors
+
+[BoringCodes](https://github.com/boringcodes)
+
+## License
+
+[MIT](https://github.com/boringcodes/utils/blob/master/LICENSE)
