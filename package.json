@@ -10,7 +10,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "files": [
-    "dist"
+    "dist/*"
   ],
   "scripts": {
     "clean": "rm -rf dist",
