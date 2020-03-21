@@ -1,3 +1,4 @@
+import fs from 'fs';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
@@ -19,6 +20,18 @@ const common = {
     sourceMaps(),
   ],
 };
+
+(() => {
+  const dir = 'dist';
+  const files = ['CHANGELOG.md', 'LICENSE', 'package.json', 'README.md'];
+
+  fs.mkdirSync(dir);
+  files.map((file) => {
+    fs.writeFileSync(`${dir}/${file}`, fs.readFileSync(file, 'utf-8'), 'utf-8');
+
+    console.info(`${file} → ${dir}/${file}`);
+  });
+})();
 
 export default [
   {
