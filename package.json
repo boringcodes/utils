@@ -7,11 +7,8 @@
   "license": "MIT",
   "author": "BoringCodes <hi@boringcodes.com> (https://boringcodes.com)",
   "repository": "https://github.com/boringcodes/utils.git",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
     "purge": "rm -rf node_modules",
