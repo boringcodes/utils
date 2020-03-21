@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/boringcodes/utils/compare/v0.1.1...v0.1.2) (2020-03-21)
+
+
+### Bug Fixes
+
+* **close #5:** missing dist files in npm package ([#6](https://github.com/boringcodes/utils/issues/6)) ([dcfabd5](https://github.com/boringcodes/utils/commit/dcfabd5)), closes [#5](https://github.com/boringcodes/utils/issues/5)
+
+
+
 ### [0.1.1](https://github.com/boringcodes/utils/compare/v0.1.0...v0.1.1) (2020-03-18)
 
 
