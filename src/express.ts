@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 
-import { HttpError } from './error';
+import { MyError, HttpError } from './error';
 import errorHandler from './errorHandler';
 
 // ---------------------------------------------------
@@ -25,14 +25,14 @@ const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
  * @param res Express Response object
  * @param __ Express Next function
  */
-const handleErrors = (err: HttpError, _: Request, res: Response, __: NextFunction) => {
+const handleErrors = (err: MyError | HttpError, _: Request, res: Response, __: NextFunction) => {
   errorHandler.handle(err);
 
   try {
     // check if status code exists
-    getStatusText(err.code);
+    getStatusText((err as HttpError).code);
 
-    res.status(err.code).send(err);
+    res.status((err as HttpError).code).send(err);
   } catch (error) {
     res.status(INTERNAL_SERVER_ERROR).send(err);
   }
