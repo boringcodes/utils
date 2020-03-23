@@ -13,7 +13,7 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: yarn
-      - name: Analyze code
+      - name: Analyze source
         run: yarn lint
 
   build:
@@ -26,5 +26,5 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: yarn
-      - name: Build code
+      - name: Build source
         run: yarn build
