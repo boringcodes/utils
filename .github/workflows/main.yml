@@ -3,7 +3,7 @@ name: main
 on: push
 
 jobs:
-  main:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,9 +11,20 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-      - name: Install
+      - name: Install dependencies
         run: yarn
-      - name: Lint
+      - name: Analyze code
         run: yarn lint
-      - name: Build
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org
+      - name: Install dependencies
+        run: yarn
+      - name: Build code
         run: yarn build
