@@ -1,4 +1,6 @@
 import fs from 'fs';
+import ms from 'pretty-ms';
+import color from 'colorette';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
@@ -7,6 +9,12 @@ import sourceMaps from 'rollup-plugin-sourcemaps';
 
 import pkg from './package.json';
 
+const inputDir = 'src';
+const inputFiles = fs.readdirSync(inputDir).map(file => `${inputDir}/${file}`);
+const otherFiles = ['CHANGELOG.md', 'LICENSE', 'package.json', 'README.md'];
+const outputDir = 'dist';
+const outputFormat = 'cjs';
+const outputSourcemap = true;
 const common = {
   external: [
     ...Object.keys(pkg.dependencies || {}),
@@ -15,78 +23,48 @@ const common = {
   plugins: [
     resolve(),
     commonjs(),
-    typescript({ useTsconfigDeclarationDir: true, rollupCommonJSResolveHack: true }),
+    typescript({
+      useTsconfigDeclarationDir: true,
+      rollupCommonJSResolveHack: true,
+    }),
     async(),
     sourceMaps(),
   ],
 };
 
-(() => {
-  const dir = 'dist';
-  const files = ['CHANGELOG.md', 'LICENSE', 'package.json', 'README.md'];
+(function() {
+  const start = Date.now();
 
-  fs.mkdirSync(dir);
-  files.map((file) => {
-    fs.writeFileSync(`${dir}/${file}`, fs.readFileSync(file, 'utf-8'), 'utf-8');
+  fs.mkdirSync(outputDir);
+  otherFiles.map(file => {
+    fs.writeFileSync(
+      `${outputDir}/${file}`,
+      fs.readFileSync(file, 'utf-8'),
+      'utf-8',
+    );
 
-    console.info(`${file} → ${dir}/${file}`);
+    console.log(
+      color.cyan(`${color.bold(file)} → ${color.bold(outputDir)}...`),
+    );
   });
+
+  console.log(
+    color.greenBright(
+      `created ${color.bold(outputDir)} in ${color.bold(
+        ms(Date.now() - start),
+      )}`,
+    ),
+  );
 })();
 
-export default [
-  {
-    ...common,
-    input: 'src/error.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/errorHandler.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/express.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/index.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-  {
-    ...common,
-    input: 'src/logger.ts',
-    output: [
-      {
-        dir: 'dist',
-        format: 'cjs',
-        sourcemap: true,
-      },
-    ],
-  },
-];
+export default inputFiles.map(inputFile => ({
+  ...common,
+  input: inputFile,
+  output: [
+    {
+      dir: outputDir,
+      format: outputFormat,
+      sourcemap: outputSourcemap,
+    },
+  ],
+}));
