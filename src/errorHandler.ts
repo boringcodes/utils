@@ -10,7 +10,8 @@ const handle = (err: MyError) => {
   // E.g. log to console
   logger.error(err);
 
-  if (!err.operational) {
+  // Exit the app if this is programmer error
+  if (!err.isOperational) {
     logger.info('> App exited!');
 
     process.exit(1);

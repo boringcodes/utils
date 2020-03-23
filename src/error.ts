@@ -1,16 +1,20 @@
 import { isDev } from '.';
 
+/**
+ * Custom Error that has additional arg 'operational'
+ * to distinguish operational vs programmer errors
+ */
 class MyError extends Error {
-  readonly operational?: boolean;
+  readonly isOperational?: boolean;
 
-  constructor(err: any, operational = false) {
+  constructor(err: any, isOperational = false) {
     super();
 
     this.name = err instanceof Error || typeof err === 'object' ? err.name : 'Error';
     this.message = err instanceof Error || typeof err === 'object' ? err.message : err;
-    this.operational = operational;
+    this.isOperational = isOperational;
 
-    // restore prototype chain
+    // Restore prototype chain
     Object.setPrototypeOf(this, new.target.prototype);
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
@@ -39,7 +43,9 @@ class HttpError extends MyError {
       message: this.message,
     };
 
-    return !isDev() ? content : { ...content, error: this.stack };
+    return !isDev()
+      ? content
+      : { ...content, error: this.stack };
   }
 }
 
