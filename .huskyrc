@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "pretty-quick --staged --pattern \"**/*.{js,ts}\" && yarn lint",
+    "pre-commit": "pretty-quick --staged --pattern \"src/**/*.ts\" && yarn lint",
     "pre-push": "yarn build"
   }
 }
