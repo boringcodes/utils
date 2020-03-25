@@ -16,6 +16,11 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@boringcodes/prettier-config@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@boringcodes/prettier-config/-/prettier-config-1.0.0.tgz#94ebeda4fec2d155ad957a0e47d3ed492400b91b"
+  integrity sha512-P9Ymg/8x1PiIAIysHXZ5fOV0J+H5RxGhcAKNjrn8uyncPratIfzbJ0rKTYlgpjuMcGbFM7U+E4tdCVnOnYk/SA==
+
 "@fimbul/bifrost@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@fimbul/bifrost/-/bifrost-0.17.0.tgz#f0383ba7e40992e3193dc87e2ddfde2ad62a9cf4"
