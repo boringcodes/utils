@@ -1,5 +1,10 @@
 import { Request, Response, NextFunction, Router } from 'express';
-import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
+import {
+  NOT_FOUND,
+  OK,
+  INTERNAL_SERVER_ERROR,
+  getStatusText,
+} from 'http-status-codes';
 
 import { MyError, HttpError } from './error';
 import errorHandler from './errorHandler';
@@ -25,7 +30,12 @@ const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
  * @param res Express Response object
  * @param __ Express Next function
  */
-const handleErrors = (err: MyError | HttpError, _: Request, res: Response, __: NextFunction) => {
+const handleErrors = (
+  err: MyError | HttpError,
+  _: Request,
+  res: Response,
+  __: NextFunction,
+) => {
   errorHandler.handle(err);
 
   try {
@@ -58,10 +68,4 @@ const health = () => {
   return router;
 };
 
-export {
-  handleNotFound,
-  handleErrors,
-  handleHealthCheck,
-
-  health,
-};
+export { handleNotFound, handleErrors, handleHealthCheck, health };

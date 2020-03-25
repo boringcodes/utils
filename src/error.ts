@@ -10,8 +10,10 @@ class MyError extends Error {
   constructor(err: any, isOperational = false) {
     super();
 
-    this.name = err instanceof Error || typeof err === 'object' ? err.name : 'Error';
-    this.message = err instanceof Error || typeof err === 'object' ? err.message : err;
+    this.name =
+      err instanceof Error || typeof err === 'object' ? err.name : 'Error';
+    this.message =
+      err instanceof Error || typeof err === 'object' ? err.message : err;
     this.isOperational = isOperational;
 
     // Restore prototype chain
@@ -43,9 +45,7 @@ class HttpError extends MyError {
       message: this.message,
     };
 
-    return !isDev()
-      ? content
-      : { ...content, error: this.stack };
+    return !isDev() ? content : { ...content, error: this.stack };
   }
 }
 
