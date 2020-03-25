@@ -67,20 +67,27 @@ yarn build
 
 ## Directories
 
-``` tree
+```tree
 .
-├── CHANGELOG.md
-├── LICENSE
-├── README.md
-├── dist
-├── package.json
-├── rollup.config.js
+├── .github/workflows
+│   ├── create-github-release.yml
+│   ├── main.yml
+│   ├── publish-npm.yml
+├── dist (generated after building)
 ├── src
 │   ├── errorHandler.ts
 │   ├── error.ts
 │   ├── express.ts
 │   ├── index.ts
 │   ├── logger.ts
+├── .gitignore
+├── .hustkyrc
+├── .prettierrc.js
+├── CHANGELOG.md
+├── LICENSE
+├── package.json
+├── README.md
+├── rollup.config.js
 ├── tsconfig.json
 ├── tslint.json
 ```
