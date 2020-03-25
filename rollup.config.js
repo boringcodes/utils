@@ -8,7 +8,9 @@ import sourceMaps from 'rollup-plugin-sourcemaps';
 import pkg from './package.json';
 
 const inputDir = 'src';
-const inputFiles = fs.readdirSync(inputDir).map(file => `${inputDir}/${file}`);
+const inputFiles = fs
+  .readdirSync(inputDir)
+  .map((file) => `${inputDir}/${file}`);
 const outputDir = 'dist';
 const outputFormat = 'cjs';
 const outputSourcemap = true;
@@ -29,7 +31,7 @@ const common = {
   ],
 };
 
-export default inputFiles.map(inputFile => ({
+export default inputFiles.map((inputFile) => ({
   ...common,
   input: inputFile,
   output: [

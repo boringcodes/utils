@@ -31,10 +31,11 @@
 </div>
 
 ## About
+
 This package implements a number of common `Boring Utilities`.
 
-
 ## Installation
+
 This is a [Node.js](https://nodejs.org/en/) module available through the
 [npm registry](https://www.npmjs.com/).
 
@@ -48,10 +49,10 @@ Installation is done using the
 $ yarn add @boringcodes/utils
 ```
 
-
 ## Features
 
 The following modules are included:
+
 - [x] Node env detector
 - [x] Custom logger
 - [x] Custom errors classes
@@ -61,6 +62,7 @@ The following modules are included:
 ## Usage
 
 Then run the build command
+
 ```bash
 yarn build
 ```
