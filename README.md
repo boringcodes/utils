@@ -6,7 +6,7 @@
     <a href="https://github.com/boringcodes/utils/commits" aria-label="Commitizen Friendly">
       <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
     </a>
-    <a href="https://github.com/boringcodes" aria-label="Code Style Prettier">
+    <a href="https://github.com/boringcodes" aria-label="Prettier Code Style">
       <img src="https://img.shields.io/badge/code_style-prettier-brightgreen?style=flat-square">
     </a>
     <a href="https://github.com/boringcodes/utils/actions" aria-label="GitHub Workflow Status">
