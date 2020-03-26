@@ -1,44 +1,28 @@
-import fs from 'fs';
 import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
-import async from 'rollup-plugin-async';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 
 import pkg from './package.json';
 
-const inputDir = 'src';
-const inputFiles = fs
-  .readdirSync(inputDir)
-  .map((file) => `${inputDir}/${file}`);
-const outputDir = 'dist';
-const outputFormat = 'cjs';
-const outputSourcemap = true;
-const common = {
+const getConfig = (inputFile) => ({
   external: [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ],
-  plugins: [
-    resolve(),
-    commonjs(),
-    typescript({
-      useTsconfigDeclarationDir: true,
-      rollupCommonJSResolveHack: true,
-    }),
-    async(),
-    sourceMaps(),
-  ],
-};
-
-export default inputFiles.map((inputFile) => ({
-  ...common,
+  plugins: [resolve(), typescript({ useTsconfigDeclarationDir: true })],
   input: inputFile,
   output: [
     {
-      dir: outputDir,
-      format: outputFormat,
-      sourcemap: outputSourcemap,
+      dir: 'dist',
+      format: 'cjs',
+      sourcemap: true,
     },
   ],
-}));
+});
+
+export default [
+  getConfig('src/error.ts'),
+  getConfig('src/errorHandler.ts'),
+  getConfig('src/express.ts'),
+  getConfig('src/index.ts'),
+  getConfig('src/logger.ts'),
+];
