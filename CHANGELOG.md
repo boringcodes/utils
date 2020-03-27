@@ -4,26 +4,21 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.3.0](https://github.com/boringcodes/utils/compare/v0.2.1...v0.3.0) (2020-03-26)
 
-
 ### Bug Fixes
 
-* **prettier:** update files pattern to format only files in src/ dir ([963c4ee](https://github.com/boringcodes/utils/commit/963c4ee))
-
+- **prettier:** update files pattern to format only files in src/ dir ([963c4ee](https://github.com/boringcodes/utils/commit/963c4ee))
 
 ### Build System
 
-* **package:** update tsconfig, remove unnecessary rollup plugins ([4a5f879](https://github.com/boringcodes/utils/commit/4a5f879))
-* **rollup:** replace copy files code snippet with yarn postbuild script using copyfiles ([e089f84](https://github.com/boringcodes/utils/commit/e089f84))
-
+- **package:** update tsconfig, remove unnecessary rollup plugins ([4a5f879](https://github.com/boringcodes/utils/commit/4a5f879))
+- **rollup:** replace copy files code snippet with yarn postbuild script using copyfiles ([e089f84](https://github.com/boringcodes/utils/commit/e089f84))
 
 ### Features
 
-* **close #9:** add build source github workflow ([#13](https://github.com/boringcodes/utils/issues/13)) ([c3692e9](https://github.com/boringcodes/utils/commit/c3692e9)), closes [#9](https://github.com/boringcodes/utils/issues/9)
-* **package:** update prettier files pattern to include json, yml & md exts ([e7a6b6b](https://github.com/boringcodes/utils/commit/e7a6b6b))
-* **prettier:** extend @boringcodes/prettier-config, update husky pre-commit hook ([e0ee35d](https://github.com/boringcodes/utils/commit/e0ee35d))
-* **scripts:** add format & format:check using prettier ([ae24521](https://github.com/boringcodes/utils/commit/ae24521))
-
-
+- **close #9:** add build source github workflow ([#13](https://github.com/boringcodes/utils/issues/13)) ([c3692e9](https://github.com/boringcodes/utils/commit/c3692e9)), closes [#9](https://github.com/boringcodes/utils/issues/9)
+- **package:** update prettier files pattern to include json, yml & md exts ([e7a6b6b](https://github.com/boringcodes/utils/commit/e7a6b6b))
+- **prettier:** extend @boringcodes/prettier-config, update husky pre-commit hook ([e0ee35d](https://github.com/boringcodes/utils/commit/e0ee35d))
+- **scripts:** add format & format:check using prettier ([ae24521](https://github.com/boringcodes/utils/commit/ae24521))
 
 ### [0.2.1](https://github.com/boringcodes/utils/compare/v0.2.0...v0.2.1) (2020-03-23)
 
