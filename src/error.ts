@@ -1,11 +1,17 @@
 import { isDev } from '.';
 
+interface HttpErrorJSON {
+  readonly code: number;
+  readonly message: string;
+  readonly error?: any;
+}
+
 /**
  * Custom Error that has additional arg 'operational'
  * to distinguish operational vs programmer errors
  */
 class MyError extends Error {
-  readonly isOperational?: boolean;
+  readonly isOperational: boolean;
 
   constructor(err: any, isOperational = false) {
     super();
@@ -20,9 +26,7 @@ class MyError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, MyError);
-    }
+    Error.captureStackTrace(this, MyError);
   }
 }
 
@@ -39,7 +43,7 @@ class HttpError extends MyError {
     this.name = 'HttpError';
   }
 
-  toJSON() {
+  toJSON(): HttpErrorJSON {
     const content = {
       code: this.code,
       message: this.message,
@@ -49,4 +53,4 @@ class HttpError extends MyError {
   }
 }
 
-export { MyError, HttpError };
+export { MyError, HttpError, HttpErrorJSON };

@@ -19,7 +19,7 @@ import errorHandler from './errorHandler';
  * @param __ Express Response object
  * @param next Express Next function
  */
-const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
+const handleNotFound = (_: Request, __: Response, next: NextFunction): void => {
   next(new HttpError(NOT_FOUND, 'Resource not found'));
 };
 
@@ -30,7 +30,11 @@ const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
  * @param res Express Response object
  * @param __ Express Next function
  */
-const handleErrors = (err: MyError | HttpError, _: Request, res: Response) => {
+const handleErrors = (
+  err: MyError | HttpError,
+  _: Request,
+  res: Response,
+): void => {
   errorHandler.handle(err);
 
   try {
@@ -48,14 +52,14 @@ const handleErrors = (err: MyError | HttpError, _: Request, res: Response) => {
  * @param _ Express Request object
  * @param res Express Response object
  */
-const handleHealthCheck = (_: Request, res: Response) => {
+const handleHealthCheck = (_: Request, res: Response): void => {
   res.status(OK).send('OK');
 };
 
 /**
  * An Express Middleware mounted /health endpoint for health checking
  */
-const health = () => {
+const health = (): Router => {
   const router = Router();
 
   router.get('/health', handleHealthCheck);

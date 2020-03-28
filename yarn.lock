@@ -17,9 +17,9 @@
     js-tokens "^4.0.0"
 
 "@boringcodes/eslint-config-typescript@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@boringcodes/eslint-config-typescript/-/eslint-config-typescript-1.0.0.tgz#13a5eaf3a1064e113687b5d380a76e6c57a437fb"
-  integrity sha512-F6Ue74b+p8aQ0DyETPHRmxk5DIeA+YfGhXNWigbVfRUpfSyN3sCuSuxCR3gAncCj57SaQIB6Nse3LnUggLA+rQ==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@boringcodes/eslint-config-typescript/-/eslint-config-typescript-1.1.1.tgz#20e8f4e253a43535468724a560088d13c14ef62b"
+  integrity sha512-MKtPPIo2wE8BlhMC9oE7TaWIDlmWmr1RErN+0HvkQC5ubcfCaDVCGcSdsb7MzeHo+I8Rd5/6Im+gG+yDEQQRmQ==
 
 "@boringcodes/prettier-config@^1.0.0":
   version "1.0.0"
@@ -133,7 +133,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^2.25.0":
+"@typescript-eslint/parser@^2.24.0", "@typescript-eslint/parser@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.25.0.tgz#abfb3d999084824d9a756d9b9c0f36fba03adb76"
   integrity sha512-mccBLaBSpNVgp191CP5W+8U1crTyXsRziWliCqzj02kpxdjKMvFHGJbK33NroquH3zB/gZ8H511HEsJBa2fNEg==
@@ -966,6 +966,14 @@ eslint-config-prettier@^6.10.1:
   integrity sha512-svTy6zh1ecQojvpbJSgH3aei/Rt7C6i090l5f2WQ4aB05lYHeZIR1qL4wZyyILTbtmnbHP5Yn8MrsOJMGa8RkQ==
   dependencies:
     get-stdin "^6.0.0"
+
+eslint-config-standard-with-typescript@^15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-with-typescript/-/eslint-config-standard-with-typescript-15.0.1.tgz#cf9fa98c089f02d3c24335f4096d2a1c15161d7b"
+  integrity sha512-Bsk21CA1WV5K+MVrYM8CV7dbnflNFmrL22Dahi3M3VQp8hPFVnsAlgXmN9CMTXEKpP048semsZeIdYQttSoqBA==
+  dependencies:
+    "@typescript-eslint/parser" "^2.24.0"
+    eslint-config-standard "^14.1.1"
 
 eslint-config-standard@^14.1.1:
   version "14.1.1"
@@ -3416,7 +3424,12 @@ trim-off-newlines@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
 
-tslib@1.9.3, tslib@^1.11.1, tslib@^1.8.1, tslib@^1.9.0:
+tslib@1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+  integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
+
+tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
   integrity sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==

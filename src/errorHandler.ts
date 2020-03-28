@@ -5,7 +5,7 @@ import logger from './logger';
  * Log error to destination then exit the process if programmer error
  * @param err error to be handled
  */
-const handle = (err: MyError) => {
+const handle = (err: MyError): void => {
   // E.g. log to sentry
   // E.g. log to console
   logger.error(err);

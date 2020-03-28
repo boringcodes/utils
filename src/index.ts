@@ -4,8 +4,10 @@
  */
 
 const isDev = (): boolean => {
-  return !['test', 'staging', 'production'].includes(
-    process.env.NODE_ENV as string,
+  return (
+    process.env.NODE_ENV === null ||
+    process.env.NODE_ENV === undefined ||
+    !['test', 'staging', 'production'].includes(process.env.NODE_ENV)
   );
 };
 
