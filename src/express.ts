@@ -30,12 +30,7 @@ const handleNotFound = (_: Request, __: Response, next: NextFunction) => {
  * @param res Express Response object
  * @param __ Express Next function
  */
-const handleErrors = (
-  err: MyError | HttpError,
-  _: Request,
-  res: Response,
-  __: NextFunction,
-) => {
+const handleErrors = (err: MyError | HttpError, _: Request, res: Response) => {
   errorHandler.handle(err);
 
   try {
