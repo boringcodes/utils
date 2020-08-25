@@ -34,6 +34,7 @@ const handleErrors = (
   err: MyError | HttpError,
   _: Request,
   res: Response,
+  __: NextFunction,
 ): void => {
   errorHandler.handle(err);
 
@@ -43,7 +44,7 @@ const handleErrors = (
 
     res.status((err as HttpError).code).send(err);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(err);
+    res.status(INTERNAL_SERVER_ERROR).send(error);
   }
 };
 
