@@ -39,7 +39,7 @@ const handleErrors = (
   errorHandler.handle(err);
 
   try {
-    // check if status code exists
+    // check if status code exists, error thrown if doesn't
     getStatusText((err as HttpError).code);
 
     res.status((err as HttpError).code).send(err);

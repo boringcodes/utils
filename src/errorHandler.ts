@@ -1,11 +1,11 @@
-import { MyError } from './error';
+import { MyError, HttpError } from './error';
 import logger from './logger';
 
 /**
  * Log error to destination then exit the process if programmer error
  * @param err error to be handled
  */
-const handle = (err: MyError): void => {
+const handle = (err: MyError | HttpError): void => {
   // E.g. log to sentry
   // E.g. log to console
   logger.error(err);
