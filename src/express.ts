@@ -1,10 +1,5 @@
 import { Request, Response, NextFunction, Router } from 'express';
-import {
-  NOT_FOUND,
-  OK,
-  INTERNAL_SERVER_ERROR,
-  getStatusText,
-} from 'http-status-codes';
+import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import { MyError, HttpError } from './error';
 import errorHandler from './errorHandler';
@@ -20,7 +15,7 @@ import errorHandler from './errorHandler';
  * @param next Express Next function
  */
 const handleNotFound = (_: Request, __: Response, next: NextFunction): void => {
-  next(new HttpError(NOT_FOUND, 'Resource not found'));
+  next(new HttpError(StatusCodes.NOT_FOUND, 'Resource not found'));
 };
 
 /**
@@ -40,11 +35,13 @@ const handleErrors = (
 
   try {
     // check if status code exists, error thrown if doesn't
-    getStatusText((err as HttpError).code);
+    getReasonPhrase((err as HttpError).code);
 
-    res.status((err as HttpError).code).send(err);
+    // TODO: as type def of express.Response has problem, tmp casting it to any
+    (res as any).status((err as HttpError).code).send(err);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).send(error);
+    // TODO: as type def of express.Response has problem, tmp casting it to any
+    (res as any).status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
   }
 };
 
@@ -54,7 +51,8 @@ const handleErrors = (
  * @param res Express Response object
  */
 const handleHealthCheck = (_: Request, res: Response): void => {
-  res.status(OK).send('OK');
+  // TODO: as type def of express.Response has problem, tmp casting it to any
+  (res as any).status(StatusCodes.OK).send('OK');
 };
 
 /**
