@@ -8,23 +8,21 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12]
+    container: boringcodes/dev-runner:node-15-alpine
+    name: With Node.js 15
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
-      - name: Setup Node.js ${{matrix.node-version}}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{matrix.node-version}}
-          registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: yarn
       - name: Build source
         run: yarn build
+      - name: Config registry
+        uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://registry.npmjs.org'
       - name: Publish package
-        run: yarn publish dist --access public
+        run: yarn publish build --access public
         env:
           # Create your own token at https://github.com/organization/repository/settings/secrets
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
