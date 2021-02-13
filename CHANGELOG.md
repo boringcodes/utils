@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/boringcodes/utils/compare/v0.5.0...v0.5.1) (2021-02-13)
+
+### Bug Fixes
+
+- **package.json:** forgot to change output dir from dist to build, remove unused rootDir & outDir in tsconfig.json ([3e2414c](https://github.com/boringcodes/utils/commit/3e2414c1e848e61c97440c70d02b01e000d89b0c))
+
 ## [0.5.0](https://github.com/boringcodes/utils/compare/v0.4.0...v0.5.0) (2021-01-12)
 
 ## [0.4.0](https://github.com/boringcodes/utils/compare/v0.3.2...v0.4.0) (2020-08-26)
