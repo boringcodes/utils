@@ -15,7 +15,7 @@
     "build": "rollup -c",
     "postbuild": "copyfiles CHANGELOG.md LICENSE package.json README.md build",
     "purge": "rimraf node_modules",
-    "clean": "rimraf build .rpt2_cache",
+    "clean": "rimraf build",
     "format": "prettier --write --ignore-path .gitignore .",
     "format:check": "prettier --check --ignore-path .gitignore .",
     "lint": "eslint --quiet --ignore-path .gitignore --ext .ts .",
