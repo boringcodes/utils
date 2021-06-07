@@ -22,37 +22,50 @@
     "release": "standard-version",
     "release:major": "yarn release --release-as major",
     "release:minor": "yarn release --release-as minor",
-    "release:patch": "yarn release --release-as patch"
+    "release:patch": "yarn release --release-as patch",
+    "husky": "husky",
+    "lint-staged": "lint-staged",
+    "commitlint": "commitlint"
   },
   "devDependencies": {
-    "@boringcodes/eslint-config-typescript": "^1.2.0",
-    "@boringcodes/prettier-config": "^1.3.1",
-    "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
-    "@rollup/plugin-typescript": "^8.1.0",
-    "@types/express": "^4.17.9",
-    "@types/http-status-codes": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^4.12.0",
-    "@typescript-eslint/parser": "^4.12.0",
-    "copyfiles": "^2.4.1",
-    "eslint": "^7.17.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-config-standard-with-typescript": "^19.0.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^5.0.0",
-    "husky": "^4.3.7",
-    "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.36.1",
-    "standard-version": "^9.1.0",
-    "tslib": "^2.1.0",
-    "typescript": "^4.1.3"
+    "@boringcodes/eslint-config-typescript": "1.2.2",
+    "@boringcodes/prettier-config": "1.3.2",
+    "@commitlint/cli": "12.1.4",
+    "@commitlint/config-conventional": "12.1.4",
+    "@rollup/plugin-commonjs": "19.0.0",
+    "@rollup/plugin-node-resolve": "13.0.0",
+    "@rollup/plugin-typescript": "8.2.1",
+    "@types/express": "4.17.12",
+    "@typescript-eslint/eslint-plugin": "4.26.0",
+    "@typescript-eslint/parser": "4.26.0",
+    "copyfiles": "2.4.1",
+    "eslint": "7.28.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-config-standard-with-typescript": "20.0.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.1.0",
+    "eslint-plugin-standard": "5.0.0",
+    "husky": "6.0.0",
+    "lint-staged": "11.0.0",
+    "prettier": "2.3.1",
+    "rimraf": "3.0.2",
+    "rollup": "2.51.0",
+    "standard-version": "9.3.0",
+    "tslib": "2.2.0",
+    "typescript": "4.3.2"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "http-status-codes": "^2.1.4"
+    "express": "4.17.1",
+    "http-status-codes": "2.1.4"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md,yml}": "yarn format",
+    "*.ts": "yarn lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

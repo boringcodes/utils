@@ -37,11 +37,9 @@ const handleErrors = (
     // check if status code exists, error thrown if doesn't
     getReasonPhrase((err as HttpError).code);
 
-    // TODO: as type def of express.Response has problem, tmp casting it to any
-    (res as any).status((err as HttpError).code).send(err);
+    res.status((err as HttpError).code).send(err);
   } catch (error) {
-    // TODO: as type def of express.Response has problem, tmp casting it to any
-    (res as any).status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(error);
   }
 };
 
@@ -51,8 +49,7 @@ const handleErrors = (
  * @param res Express Response object
  */
 const handleHealthCheck = (_: Request, res: Response): void => {
-  // TODO: as type def of express.Response has problem, tmp casting it to any
-  (res as any).status(StatusCodes.OK).send('OK');
+  res.status(StatusCodes.OK).send('OK');
 };
 
 /**
